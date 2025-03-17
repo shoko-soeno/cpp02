@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:06:42 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/03/17 15:44:50 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/03/17 19:09:56 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,24 @@ Fixed &Fixed::operator=(const Fixed &other) {
 }
 /*
 Copy assignment operator
-When you assign one object to another after they have been created
-(for example, Fixed a; Fixed b = a;)
-this operator is called to copy the fixed-point value 
-from other to the current object
+AVOID self-assignment!
+return *this(a reference to the left-hand object) allows for chaining
+    ex) Fixed a, b, c; a = b = c;
+    in this case, the result of b = c is assigned to b as a reference
+    and then assigned to a
+
+"this" is a pointer to the object that is calling the function
+returning *this gives you a reference to the object
+
+this->_fixedPointValue
+is equivalent to
+(*this)._fixedPointValue
+Here's why:
+    "this" is a pointer to the object that is calling the function
+    *this is the object itself
+    arrow(->) is just a shorthand for 
+    dereferencing the pointer and then accessing a member
+    which is equivalent to using the dot operator
 */
 
 Fixed::~Fixed() {
@@ -55,6 +69,9 @@ int Fixed::getRawBits(void) const {
     std::cout << "getRawBits member function called" << std::endl;
     return this->_fixedPointValue;
 }
+/*
+const means that the function does not modify the object
+*/ 
 
 void Fixed::setRawBits(int const raw) {
     std::cout << "setRawBits member function called" << std::endl;

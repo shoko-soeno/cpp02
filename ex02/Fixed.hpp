@@ -6,14 +6,14 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:53:44 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/03/17 18:53:30 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/03/17 20:02:55 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include <iostream>
-# include <string>
+# include <cmath>
 
 class Fixed
 {
@@ -23,37 +23,37 @@ private:
 
 public:
     Fixed();
-    Fixed(const Fixed &copy);
+    Fixed(const int intVal);
+    Fixed(const float floatVal);
+    Fixed(const Fixed &other);
     Fixed &operator=(const Fixed &other);
     ~Fixed();
 
     int getRawBits(void) const;
     void setRawBits(int const raw);
+    float toFloat(void) const;
+    int toInt(void) const;
+
+    bool operator>(const Fixed &other) const;
+    bool operator<(const Fixed &other) const;
+    bool operator>=(const Fixed &other) const;
+    bool operator<=(const Fixed &other) const;
+    bool operator==(const Fixed &other) const;
+    bool operator!=(const Fixed &other) const;
+    Fixed operator+(const Fixed &other) const;
+    Fixed operator-(const Fixed &other) const;
+    Fixed operator*(const Fixed &other) const;
+    Fixed operator/(const Fixed &other) const;
+    Fixed &operator++();
+    Fixed &operator++(int);
+    Fixed &operator--();
+    Fixed &operator--(int);
+    static Fixed &min(Fixed &a, Fixed &b);
+    static const Fixed &min(const Fixed &a, const Fixed &b);
+    static Fixed &max(Fixed &a, Fixed &b);
+    static const Fixed &max(const Fixed &a, const Fixed &b);
 };
 
-/*
-static is used to define a member 
-that is shared among all objects of the class.
-
-Orthodox Canonical Form (OCF):
-    - Default constructor
-    - Copy constructor
-    - Assignation operator overload
-    - Destructor
-    
-Copy constructor Fixed(const Fixed &other);
-- Initializes a new object with a existing one
-    - ex) Fixed a; Fixed b(a);
-- Passing an object by value to a function
-
-Copy assignment operator Fixed &operator=(const Fixed &other);
-- replace the contents of an existing object with those of another object
-    - ex) Fixed a; Fixed b; b = a;
-
-fixed point value
-    the integer value that represents the fixed-point number
-    lower 8 bits are fractional part
-    (if int is 32 bits, 24 bits are used for integer part)
-*/
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif
