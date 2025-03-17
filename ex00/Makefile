@@ -6,14 +6,14 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/11 17:24:41 by ssoeno            #+#    #+#              #
-#    Updated: 2025/03/15 16:15:54 by ssoeno           ###   ########.fr        #
+#    Updated: 2025/03/17 15:18:42 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = zombie
+NAME = fixed
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
-SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRC = main.cpp Fixed.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
