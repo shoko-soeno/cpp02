@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:06:42 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/03/17 19:52:13 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/03/18 14:45:07 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ Fixed::Fixed(const float floatVal) {
 }
 /*
 Takes a float and converts it to the internal fixed-point representation
-    multiply the float by 2^8
+    multiply the float by 2^8 (1 << _fractionalBits is converted to 256)
     round the result
     roundf() is a function that rounds a float to the nearest integer
     (1 << 8) is equivalent to 256 (2^8)
+3.14 * 256 = 803.84 -> 804(rounded) -> 1100100100(binary)
+integer part: 11
+fractional part: 0010 0100
+804/256 = 3.140625
 */
 
 Fixed::Fixed(const Fixed &other) {
@@ -56,12 +60,12 @@ Fixed::~Fixed() {
 }
 
 int Fixed::getRawBits(void) const {
-    std::cout << "getRawBits member function called" << std::endl;
+    // std::cout << "getRawBits member function called" << std::endl;
     return this->_fixedPointValue;
 }
 
 void Fixed::setRawBits(int const raw) {
-    std::cout << "setRawBits member function called" << std::endl;
+    // std::cout << "setRawBits member function called" << std::endl;
     this->_fixedPointValue = raw;
 }
 

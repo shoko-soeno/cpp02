@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:53:44 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/03/17 20:02:55 by ssoeno           ###   ########.fr       */
+/*   Updated: 2025/03/18 15:47:12 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ public:
     Fixed operator*(const Fixed &other) const;
     Fixed operator/(const Fixed &other) const;
     Fixed &operator++();
-    Fixed &operator++(int);
+    Fixed operator++(int);
     Fixed &operator--();
-    Fixed &operator--(int);
+    Fixed operator--(int);
     static Fixed &min(Fixed &a, Fixed &b);
     static const Fixed &min(const Fixed &a, const Fixed &b);
     static Fixed &max(Fixed &a, Fixed &b);
